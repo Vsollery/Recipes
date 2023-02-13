@@ -7,21 +7,27 @@ import '@splidejs/react-splide/css';
 
 
 function Popular() {
-
     const [popular, setPopular] = useState([]);
 
     useEffect(() => {
         getPopular();
     },[]); // empty array for only the compents is mounted
-
+    
 
     //get data first before running other functions 
     const getPopular = async() =>{
 
-        
-        const api = await fetch(`https://api.spoonacular.com/recipes/random/?apiKey=${process.env.REACT_APP_API_KEY}&number=9`);
-        const data = await api.json();
-        setPopular(data.recipes); // set popular to recipes
+        const check = localStorage.getItem('popular'); //checking is anything is stored in local storage 
+        if(check){
+            setPopular(JSON.parse(check)); //parse from a string to an array
+        }else{
+            const api = await fetch(`https://api.spoonacular.com/recipes/random/?apiKey=${process.env.REACT_APP_API_KEY}&number=9`);
+            const data = await api.json();
+    
+            localStorage.setItem('popular', JSON.stringify(data.recipes));
+            setPopular(data.recipes); // set popular to recipes
+        }
+
     }
 
 
@@ -62,7 +68,7 @@ const Wrapper = styled.div`
 `;
 
 const Card = styled.div`
-    min-height: 15rem;
+    min-height: 20rem;
     border-radius: 2rem;
     overflow: hidden;
     position: relative;
