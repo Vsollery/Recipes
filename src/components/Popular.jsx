@@ -68,7 +68,7 @@ const Wrapper = styled.div`
 `;
 
 const Card = styled.div`
-    min-height: 20rem;
+    min-height: 25rem;
     border-radius: 2rem;
     overflow: hidden;
     position: relative;

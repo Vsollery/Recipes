@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom' //use to pull out key from url
 
