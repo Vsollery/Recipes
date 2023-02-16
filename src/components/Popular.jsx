@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { SplideSlide, Splide } from "@splidejs/react-splide";
 // Default theme
 import '@splidejs/react-splide/css';
+import { Link } from "react-router-dom";
 
 
 
@@ -26,6 +27,7 @@ function Popular() {
     
             localStorage.setItem('popular', JSON.stringify(data.recipes));
             setPopular(data.recipes); // set popular to recipes
+            console.log(data.recipes)
         }
 
     }
@@ -46,9 +48,11 @@ function Popular() {
                     return(
                         <SplideSlide key={recipe.id}>
                             <Card> 
-                                <p>{recipe.title}</p>
-                                <img src={recipe.image} alt={recipe.title} />
-                                <Gradient />
+                                <Link to={'/recipe/'+recipe.id}>
+                                    <p>{recipe.title}</p>
+                                    <img src={recipe.image} alt={recipe.title} />
+                                    <Gradient />
+                                </Link>
                             </Card>
 
 

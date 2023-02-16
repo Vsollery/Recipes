@@ -12,6 +12,7 @@ function Cuisine() {
         const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${name}&number=9`);
         const recipes = await data.json();
         setCuisine(recipes.results)
+        console.log(recipes.results)
     }
 
     useEffect(() => {
@@ -23,11 +24,11 @@ function Cuisine() {
         {cuisine.map((item)=>{
             return(
                 <Card key={item.id}>
-
-                    <img src={item.image} alt={item.title} />
-                    <h4>{item.title}</h4>
-                    <Link>
+                    <Link to={'/recipe/'+item.id}>
+                        <img src={item.image} alt={item.title} />
+                        <h4>{item.title}</h4>
                     </Link>
+
 
                 </Card>
             )
